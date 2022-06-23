@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Calculator</title>
+    <link rel="stylesheet" href="css/main.min.css" />
+  </head>
+  <body>
+    <div class="container text-center">
+      <form action="#" method="">
+        <div class="display-3 my-4">Weight and Mass Converter</div>
+
+        <label for="input">Kilogram (kg)</label>
+        <input type="number" step="any" size="30" id="input" />
+        to
+        <select id="targetUnitOptions">
+          <option value="2.2046226218">Pound (lbs)</option>
+          <option value="35.27396195">Ounce (oz)</option>
+          <option value="5000">Carat (car, ct)</option>
+        </select>
+        <button onclick="convert()">Convert</button>
+      </form>
+      <div id="result" class="display-1 mt-3">
+        <span class="invisible">Result</span>
+      </div>
+      <div id="rate" class="text-muted"></div>
+    </div>
+
+    <script>
+      function convert() {
+        let input = document.getElementById("input").value;
+        let selectedUnit = document.getElementById("targetUnitOptions");
+        let selectedUnitName =
+          selectedUnit.options[selectedUnit.selectedIndex].text;
+
+        document.getElementById("result").innerHTML =
+          parseFloat(input) * parseFloat(selectedUnit.value) +
+          " " +
+          selectedUnitName;
+
+        document.getElementById("rate").innerHTML =
+          "1 kg is equals to " +
+          selectedUnit.value +
+          " " +
+          selectedUnitName +
+          '<br><button class="m-3 btn text-danger" onclick="reset()">Reset</button>';
+      }
+
+      function reset() {
+        document.getElementById("result").innerHTML = "";
+        document.getElementById("rate").innerHTML = "";
+        document.getElementById("input").value = "";
+      }
+    </script>
+  </body>
+</html>

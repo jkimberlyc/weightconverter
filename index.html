@@ -35,6 +35,11 @@
         let selectedUnitName =
           selectedUnit.options[selectedUnit.selectedIndex].text;
 
+        if (isNaN(parseFloat(input))) {
+          alert("Please enter a number to convert.");
+          return false;
+        }
+
         document.getElementById("result").innerHTML =
           parseFloat(input) * parseFloat(selectedUnit.value) +
           " " +

@@ -4,60 +4,110 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simple Calculator</title>
+    <title>Weight Converter</title>
     <link rel="stylesheet" href="css/main.min.css" />
   </head>
   <body>
-    <div class="container text-center">
-      <form action="#" method="">
-        <div class="display-3 my-4">Weight and Mass Converter</div>
-
-        <label for="input">Kilogram (kg)</label>
-        <input type="number" step="any" size="30" id="input" />
-        to
-        <select id="targetUnitOptions">
-          <option value="2.2046226218">Pound (lbs)</option>
-          <option value="35.27396195">Ounce (oz)</option>
-          <option value="5000">Carat (car, ct)</option>
-        </select>
-        <button onclick="convert()">Convert</button>
+    <div class="container text-center bg-warning mt-3">
+      <form action="" method="">
+        <div class="display-5 py-3">Simple Weight and Mass Converter</div>
+        <div class="row justify-content-center">
+          <div class="col-sm-2">
+            <label for="input">Kilogram (kg)</label>
+            <input
+              type="number"
+              class="form-control"
+              step="any"
+              id="input"
+              onkeyup="simpleConvert()"
+            />
+          </div>
+          <div class="col-sm-2">
+            to
+            <select
+              id="targetUnitOptions"
+              class="form-select"
+              onClick="simpleConvert()"
+            >
+              <option value="2.2046226218">Pound (lbs)</option>
+              <option value="35.27396195">Ounce (oz)</option>
+              <option value="5000">Carat (car, ct)</option>
+            </select>
+            <!-- <button onclick="convert()">Convert</button> -->
+          </div>
+        </div>
       </form>
       <div id="result" class="display-1 mt-3">
         <span class="invisible">Result</span>
       </div>
-      <div id="rate" class="text-muted"></div>
+      <div id="rate" class="text-muted">
+        <span class="invisible"
+          ><br /><button class="m-3 btn text-danger" onclick="simpleReset()">
+            Reset
+          </button></span
+        >
+      </div>
+      <div class="text-start text-muted mt-3">using onkeyup, onclick</div>
+    </div>
+    <div class="container bg-dark text-white">
+      <form action="" method="" class="text-center">
+        <div class="display-5 py-3 text-warning">
+          Advanced Weight and Mass Converter
+        </div>
+
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-4">
+            <div class="d-flex flex-column">
+              <input
+                class="form-control fs-1 text-center"
+                type="number"
+                id="input1"
+                onkeyup="advConvert('field1')"
+              />
+              <select
+                class="form-select my-1 text-center"
+                id="unitOptions1"
+                onclick="advConvert('select1')"
+              >
+                <option>Pound (lbs)</option>
+                <option>Ounce (oz)</option>
+                <option>Kilogram (kg)</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-1 text-warning">to</div>
+          <div class="col-sm-4">
+            <div class="d-flex flex-column">
+              <input
+                class="form-control fs-1 text-center"
+                type="number"
+                id="input2"
+                onkeyup="advConvert('field2')"
+              />
+              <select
+                class="form-select my-1 text-center"
+                id="unitOptions2"
+                onclick="advConvert('select2')"
+              >
+                <option>Pound (lbs)</option>
+                <option>Ounce (oz)</option>
+                <option>Kilogram (kg)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div id="reset2">
+          <button class="btn text-danger m-3 invisible" onclick="advReset()">
+            Reset
+          </button>
+        </div>
+      </form>
+
+      <div class="text-start text-muted my-3">
+        using if/else, onkeyup, and onclick
+      </div>
     </div>
 
-    <script>
-      function convert() {
-        let input = document.getElementById("input").value;
-        let selectedUnit = document.getElementById("targetUnitOptions");
-        let selectedUnitName =
-          selectedUnit.options[selectedUnit.selectedIndex].text;
-
-        if (isNaN(parseFloat(input))) {
-          alert("Please enter a number to convert.");
-          return false;
-        }
-
-        document.getElementById("result").innerHTML =
-          parseFloat(input) * parseFloat(selectedUnit.value) +
-          " " +
-          selectedUnitName;
-
-        document.getElementById("rate").innerHTML =
-          "1 kg is equals to " +
-          selectedUnit.value +
-          " " +
-          selectedUnitName +
-          '<br><button class="m-3 btn text-danger" onclick="reset()">Reset</button>';
-      }
-
-      function reset() {
-        document.getElementById("result").innerHTML = "";
-        document.getElementById("rate").innerHTML = "";
-        document.getElementById("input").value = "";
-      }
-    </script>
+    <script src="js/index.js"></script>
   </body>
 </html>

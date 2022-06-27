@@ -39,48 +39,56 @@ function simpleConvert() {
 
   function advConvert(field) {
     var input1 = document.getElementById("input1");
+    var input1Value = input1.value;
     var input2 = document.getElementById("input2");
+    var input2Value = input2.value;
     var unit1 = document.getElementById("unitOptions1");
     let unit1Name = unit1.options[unit1.selectedIndex].text;
     var unit2 = document.getElementById("unitOptions2");
     let unit2Name = unit2.options[unit2.selectedIndex].text;
 
     if(field==="field1" || field==="select2"){
+      // input2.value="";
       if(unit1Name === "Pound (lbs)"){
+        input2.value="";
         if(unit2Name === "Pound (lbs)") input2.value = input1.value;
-        if(unit2Name === "Ounce (oz)") input2.value = parseFloat(parseFloat(input1.value)*16);
-        if(unit2Name === "Kilogram (kg)") input2.value = parseFloat(parseFloat(input1.value)/2.205);
+        if(unit2Name === "Ounce (oz)") input2.value = parseFloat(parseFloat(input1Value)*16);
+        if(unit2Name === "Kilogram (kg)") input2.value = parseFloat(parseFloat(input1Value)/2.205);
       }
 
       else if(unit1Name === "Ounce (oz)"){
-        if(unit2Name === "Ounce (oz)") input2.value = input1.value;
-        if(unit2Name === "Pound (lbs)") input2.value = parseFloat(parseFloat(input1.value)/16);
-        if(unit2Name === "Kilogram (kg)") input2.value = parseFloat(parseFloat(input1.value)/35.274);
+        input2.value="";
+        if(unit2Name === "Ounce (oz)") input2.value = input1Value;
+        if(unit2Name === "Pound (lbs)") input2.value = parseFloat(parseFloat(input1Value)/16);
+        if(unit2Name === "Kilogram (kg)") input2.value = parseFloat(parseFloat(input1Value)/35.274);
       } 
 
       else if(unit1Name === "Kilogram (kg)"){
-        if(unit2Name === "Kilogram (kg)") input2.value = input1.value;
-        if(unit2Name === "Pound (lbs)") input2.value = parseFloat(parseFloat(input1.value)*2.205);
-        if(unit2Name === "Ounce (oz)") input2.value = parseFloat(parseFloat(input1.value)*35.274);
+        input2.value="";
+        if(unit2Name === "Kilogram (kg)") input2.value = input1Value;
+        if(unit2Name === "Pound (lbs)") input2.value = parseFloat(parseFloat(input1Value)*2.205);
+        if(unit2Name === "Ounce (oz)") input2.value = parseFloat(parseFloat(input1Value)*35.274);
       } 
     }
     else if(field==="field2" || field==="select1"){
       if(unit2Name === "Pound (lbs)"){
+        input1.value="";
         if(unit1Name === "Pound (lbs)") input1.value = input2.value;
-        if(unit1Name === "Ounce (oz)") input1.value = parseFloat(parseFloat(input1.value)*16);
-        if(unit1Name === "Kilogram (kg)") input1.value = parseFloat(parseFloat(input1.value)/2.205);
+        if(unit1Name === "Ounce (oz)") input1.value = parseFloat(parseFloat(input2Value)*16);
+        if(unit1Name === "Kilogram (kg)") input1.value = parseFloat(parseFloat(input2Value)/2.205);
       }
 
       else if(unit2Name === "Ounce (oz)"){
-        if(unit1Name === "Ounce (oz)") input1.value = input2.value;
-        if(unit1Name === "Pound (lbs)") input1.value = parseFloat(parseFloat(input1.value)/16);
-        if(unit1Name === "Kilogram (kg)") input1.value = parseFloat(parseFloat(input1.value)/35.274);
+        if(unit1Name === "Ounce (oz)") input1.value = input2Value;
+        if(unit1Name === "Pound (lbs)") input1.value = parseFloat(parseFloat(input2Value)/16);
+        if(unit1Name === "Kilogram (kg)") input1.value = parseFloat(parseFloat(input2Value)/35.274);
       } 
 
       else if(unit2Name === "Kilogram (kg)"){
-        if(unit1Name === "Kilogram (kg)") input1.value = input2.value;
-        if(unit1Name === "Pound (lbs)") input1.value = parseFloat(parseFloat(input1.value)*2.205);
-        if(unit1Name === "Ounce (oz)") input1.value = parseFloat(parseFloat(input1.value)*35.274);
+        input1.value=""
+        if(unit1Name === "Kilogram (kg)") input1.value = input2Value;
+        if(unit1Name === "Pound (lbs)") input1.value = parseFloat(parseFloat(input2Value)*2.205);
+        if(unit1Name === "Ounce (oz)") input1.value = parseFloat(parseFloat(input2Value)*35.274);
       } 
     }
 

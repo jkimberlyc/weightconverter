@@ -48,10 +48,9 @@ function simpleConvert() {
     let unit2Name = unit2.options[unit2.selectedIndex].text;
 
     if(field==="field1" || field==="select2"){
-      // input2.value="";
       if(unit1Name === "Pound (lbs)"){
         input2.value="";
-        if(unit2Name === "Pound (lbs)") input2.value = input1.value;
+        if(unit2Name === "Pound (lbs)") input2.value = input1Value;
         if(unit2Name === "Ounce (oz)") input2.value = parseFloat(parseFloat(input1Value)*16);
         if(unit2Name === "Kilogram (kg)") input2.value = parseFloat(parseFloat(input1Value)/2.205);
       }
@@ -73,7 +72,7 @@ function simpleConvert() {
     else if(field==="field2" || field==="select1"){
       if(unit2Name === "Pound (lbs)"){
         input1.value="";
-        if(unit1Name === "Pound (lbs)") input1.value = input2.value;
+        if(unit1Name === "Pound (lbs)") input1.value = input2Value;
         if(unit1Name === "Ounce (oz)") input1.value = parseFloat(parseFloat(input2Value)*16);
         if(unit1Name === "Kilogram (kg)") input1.value = parseFloat(parseFloat(input2Value)/2.205);
       }

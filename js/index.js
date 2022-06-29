@@ -1,3 +1,9 @@
+var currentField;
+var currentFieldValue;
+var targetField;
+var fromUnit;
+var toUnit;
+
 function simpleConvert() {
     var selectedUnitName = "";
     let input = document.getElementById("input").value;
@@ -38,57 +44,45 @@ function simpleConvert() {
 
 
   function advConvert(field) {
-    var input1 = document.getElementById("input1");
-    var input1Value = input1.value;
-    var input2 = document.getElementById("input2");
-    var input2Value = input2.value;
-    var unit1 = document.getElementById("unitOptions1");
+    let unit1 = document.getElementById("unitOptions1");
     let unit1Name = unit1.options[unit1.selectedIndex].text;
-    var unit2 = document.getElementById("unitOptions2");
+    let unit2 = document.getElementById("unitOptions2");
     let unit2Name = unit2.options[unit2.selectedIndex].text;
-
-    if(field==="field1" || field==="select2"){
-      if(unit1Name === "Pound (lbs)"){
-        input2.value="";
-        if(unit2Name === "Pound (lbs)") input2.value = input1Value;
-        if(unit2Name === "Ounce (oz)") input2.value = parseFloat(parseFloat(input1Value)*16);
-        if(unit2Name === "Kilogram (kg)") input2.value = parseFloat(parseFloat(input1Value)/2.205);
-      }
-
-      else if(unit1Name === "Ounce (oz)"){
-        input2.value="";
-        if(unit2Name === "Ounce (oz)") input2.value = input1Value;
-        if(unit2Name === "Pound (lbs)") input2.value = parseFloat(parseFloat(input1Value)/16);
-        if(unit2Name === "Kilogram (kg)") input2.value = parseFloat(parseFloat(input1Value)/35.274);
-      } 
-
-      else if(unit1Name === "Kilogram (kg)"){
-        input2.value="";
-        if(unit2Name === "Kilogram (kg)") input2.value = input1Value;
-        if(unit2Name === "Pound (lbs)") input2.value = parseFloat(parseFloat(input1Value)*2.205);
-        if(unit2Name === "Ounce (oz)") input2.value = parseFloat(parseFloat(input1Value)*35.274);
-      } 
+    
+    if (field==='field1' || field==='select1' || field==='select2'){
+      currentField = "field1";
+      currentFieldValue = document.getElementById("input1").value;
+      targetField = document.getElementById("input2");
+      fromUnit = unit1Name;
+      toUnit = unit2Name;
+    } 
+    
+    else if (field==='field2') {
+      currentField = 'field2';
+      currentFieldValue = document.getElementById("input2").value;
+      targetField = document.getElementById("input1");
+      fromUnit = unit2Name;
+      toUnit = unit1Name;
     }
-    else if(field==="field2" || field==="select1"){
-      if(unit2Name === "Pound (lbs)"){
-        input1.value="";
-        if(unit1Name === "Pound (lbs)") input1.value = input2Value;
-        if(unit1Name === "Ounce (oz)") input1.value = parseFloat(parseFloat(input2Value)*16);
-        if(unit1Name === "Kilogram (kg)") input1.value = parseFloat(parseFloat(input2Value)/2.205);
-      }
 
-      else if(unit2Name === "Ounce (oz)"){
-        if(unit1Name === "Ounce (oz)") input1.value = input2Value;
-        if(unit1Name === "Pound (lbs)") input1.value = parseFloat(parseFloat(input2Value)/16);
-        if(unit1Name === "Kilogram (kg)") input1.value = parseFloat(parseFloat(input2Value)/35.274);
-      } 
+    targetField.value="";
 
-      else if(unit2Name === "Kilogram (kg)"){
-        input1.value=""
-        if(unit1Name === "Kilogram (kg)") input1.value = input2Value;
-        if(unit1Name === "Pound (lbs)") input1.value = parseFloat(parseFloat(input2Value)*2.205);
-        if(unit1Name === "Ounce (oz)") input1.value = parseFloat(parseFloat(input2Value)*35.274);
-      } 
+    if(fromUnit === "Pound (lbs)"){
+      if(toUnit === "Pound (lbs)") targetField.value = currentFieldValue;
+      if(toUnit === "Ounce (oz)") targetField.value = parseFloat(parseFloat(currentFieldValue)*16);
+      if(toUnit === "Kilogram (kg)") targetField.value = parseFloat(parseFloat(currentFieldValue)/2.205);
+    }
+
+    else if(fromUnit === "Ounce (oz)"){
+      if(toUnit === "Ounce (oz)") targetField.value = currentFieldValue;
+      if(toUnit === "Pound (lbs)") targetField.value = parseFloat(parseFloat(currentFieldValue)/16);
+      if(toUnit === "Kilogram (kg)") targetField.value = parseFloat(parseFloat(currentFieldValue)/35.274);
+    }
+
+    else if(fromUnit === "Kilogram (kg)"){
+      if(toUnit === "Kilogram (kg)") targetField.value = currentFieldValue;
+      if(toUnit === "Pound (lbs)") targetField.value = parseFloat(parseFloat(currentFieldValue)*2.205);
+      if(toUnit === "Ounce (oz)") targetField.value = parseFloat(parseFloat(currentFieldValue)*35.274);
     }
 
     document.getElementById("reset2").innerHTML = "<button class='btn text-danger m-3' onclick='advReset()'>Reset</button>"
